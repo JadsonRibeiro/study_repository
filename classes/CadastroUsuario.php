@@ -1,7 +1,10 @@
 <?php
 
-namespace classes;
+namespace Classes;
 
-function cadastroCliente(){
-	echo 'cliente cadastrado <br />';	
+Class CadastroUsuario
+{
+	function cadastro(){
+		echo 'cliente cadastrado <br />';	
+	}
 }
