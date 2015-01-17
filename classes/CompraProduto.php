@@ -4,7 +4,7 @@ namespace Classes;
 
 Class CompraProduto
 {
-	function compra(){
+	function compra() {
 		echo 'produto comprado <br />';
 	}
 }

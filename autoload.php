@@ -3,7 +3,8 @@
 define("HOME", dirname(__FILE__));
 define("DS", DIRECTORY_SEPARATOR);
 
-spl_autoload_register( function($class){
+spl_autoload_register( function($class)
+{
 	$nome = str_replace("\\", DS, $class.'.php');
 	
 	if (file_exists(HOME. DS. $nome)) {

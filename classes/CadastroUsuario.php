@@ -4,7 +4,7 @@ namespace Classes;
 
 Class CadastroUsuario
 {
-	function cadastro(){
+	function cadastro() {
 		echo 'cliente cadastrado <br />';	
 	}
 }
