@@ -3,5 +3,5 @@
 namespace classes;
 
 function cadastroCliente(){
-	echo 'cliente cadastrado <br />'
+	echo 'cliente cadastrado <br />';	
 }
