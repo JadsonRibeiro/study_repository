@@ -1,12 +1,11 @@
 <?php
 
 include('Carro.class.php');
+include('Conta.class.php');
 
-$carro = new Carro();
+$conta = new Conta("Papicu", "Jadson Ribeiro", "051 02-5");
 
-$carro->ano = "2012";
-$carro->modelo = "C4";
-$carro->cor = "amarelo";
-$carro->fabricante = "Citroen";
-
-$carro->mostrarDescricao();
+$conta->extrato();
+$conta->sacar(45);
+$conta->depositar(100);
+$conta->sacar(45);
