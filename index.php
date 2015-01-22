@@ -1,12 +1,12 @@
 <?php
 
-use Classes\CadastroUsuario;
-use Classes\CompraProduto;
+include('Carro.class.php');
 
-include_once('autoload.php');
+$carro = new Carro();
 
-$cadastro = new CadastroUsuario();
-$compra = new CompraProduto();
+$carro->ano = "2012";
+$carro->modelo = "C4";
+$carro->cor = "amarelo";
+$carro->fabricante = "Citroen";
 
-$cadastro->cadastro();
-$compra->compra();
+$carro->mostrarDescricao();
