@@ -1,22 +1,26 @@
 <?php
 
-class Conta
+abstract class Conta
 {
 	public $agencia;
 	public $cliente;
 	public $conta;
-	public $saldo = 0;
 	public $status = false;
+	private $saldo = 0;
+	static $acessos = 0;
+	public $Endereco;
 
 	/*Metodo __construct()
 	*Inicializa os atributos da classe
 	*/
-	public function __construct($agencia, $cliente, $conta)
+	public function __construct($agencia, $cliente, $conta, $Endereco, $saldo)
 	{
 		$this->agencia = $agencia;
 		$this->cliente = $cliente;
 		$this->conta = $conta;
 		$this->status = true;
+		$this->saldo = $saldo;
+		$this->Endereco = $Endereco;
 	}
 
 	/*Metodo __destruct()
@@ -30,31 +34,61 @@ class Conta
 	/*Metodo sacar()
 	*Diminui o saldo do cliente
 	*/
-	public function sacar($qnt)
-	{
-		if ($qnt > $this->saldo) {
-			echo "Voce nao tem saldo suficiente <br/>";
-		} else {
-			$this->saldo -= $qnt;
-			$this->extrato();	
-		}
-		
-	}
+	abstract public function sacar($qnt);
 
 	/*Metodo extrato()
 	*Imprime dados da conta
 	*/
-	public function extrato()
-	{
-		echo "O Cliente {$this->cliente} da Agencia {$this->agencia} que possui a Conta {$this->conta} tem saldo {$this->saldo}<br/>";
-	}
+	abstract public function extrato();
 
 	/*Metodo depositar()
 	*Incrementa determinado valor ao saldo
 	*/
-	public function depositar($qnt)
+	abstract public function depositar($qnt);
+
+	/*Metodo getSaldo()
+	*Retorna o saldo
+	*Nao pode ser sobrescrito pois é declarado como final
+	*/
+	final public function getSaldo()
 	{
-		$this->saldo += $qnt;
-		$this->extrato();
+		return $this->saldo;
 	}
+
+	/*Metodo setSaldo()
+	*Seta o saldo
+	*Nao pode ser sobrescrito pois é declarado como final
+	*/
+	final public function setSaldo($valor)
+	{
+		$this->saldo = $valor;
+	}
+
+	/*Metodo incrementaAcessos()
+	*incrementa a variavel estatica sempre que qualquer tipo de conta é acessada
+	*/
+	final public function incrementaAcessos()
+	{
+		Conta::$acessos ++;
+	}
+
+	/*Metodo final getAcessos()
+	*retorna o numero de acessos a conta
+	*/
+	final public function getAcessos()
+	{
+		return Conta::$acessos;
+	}
+
+	/*Metodo final imprimeEnd()
+	*Imprime os dados do endereco
+	*/
+	final public function imprimeEnd()
+	{
+		//CONSERTAR ERRO .. FAZER REFERENCIAS A VARIAVEL POR MEIO DO OBJETO 'FORNECEDOR'
+		return "Endereco <br> Bairro: {$this->Endereco->bairro} , Rua: {$this->Endereco->rua} , Numero {$this->Endereco->numero}  <br/>";
+	}
+
 }
+
+?>
