@@ -7,9 +7,15 @@
 	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript">
 		function teste() {
-			alert(jQuery('.btn_atualizar').val());
+			var botoes = jQuery('.btn_enviar').val()+' - '+jQuery('.btn_atualizar').val()+' - '+jQuery('.btn_deletar').val();
+			alert(botoes);
 		}
 	</script>
+	<?php
+		function testePhp(){
+			echo $_POST['btn'];
+		}
+	?>
 
 </head>
 
@@ -35,24 +41,19 @@
 				<br/>
 				Saldo Inicial: <div id="slider"> </div> R$ <input type="text" class="conta_saldo_inicial" name="conta_saldo_inicial" size="1px" value="20">
 			</div>
-			<input type="submit" value="INSERIR" name="btn_enviar" class="btn_enviar">
-			<input type="submit" value="ATUALIZAR" name="btn_atualizar" class="btn_atualizar">
-			<input type="submit" value="DELETAR" name="btn_deletar" class="btn_deletar">
+			<input type="submit" value="INSERIR" name="btn" class="btn_enviar">
+			<input type="submit" value="ATUALIZAR" name="btn" class="btn_atualizar">
+		</form>
+	</div>
+	<div id="block">
+		<form method="POST" action="manipula_banco.php">
+			Nome: <input type="text" name="del_nome"> <br/>
+			<input type="submit" value="DELETAR" name="btn_del">
 		</form>
 	</div>
 
-	<script>
-		jQuery('#slider').slider({
-			max: 1000,
-			orientation: "horizontal",
-			animate: "fast",
-			value: 20
-		});
+	<script type="text/javascript" src="js/javascript.js"></script>
 
-		jQuery('#slider').on('slidechange', function(event, ui) {
-			jQuery('.conta_saldo_inicial').val(ui.value);
-		});
-	</script>
 </body>
 
 </html>

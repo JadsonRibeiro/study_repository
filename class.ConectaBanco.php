@@ -48,8 +48,9 @@ class ConectaBanco
 	{
 		$action = $this->con->prepare("DELETE FROM teste_pdo WHERE nome='?'");
 
-		$action->bindParam(1, $nome);
-		$action->execute();
+		// $action->bindParam(1, $nome);
+		
+		$action->execute(array($nome));
 	}
 	
 }
