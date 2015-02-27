@@ -35,9 +35,9 @@
 				<br/>
 				Saldo Inicial: <div id="slider"> </div> R$ <input type="text" class="conta_saldo_inicial" name="conta_saldo_inicial" size="1px" value="20">
 			</div>
-			<input type="submit" value="INSERIR" name="btn_enviar" class="btn_enviar">
-			<input type="submit" value="ATUALIZAR" name="btn_atualizar" class="btn_atualizar">
-			<input type="submit" value="DELETAR" name="btn_deletar" class="btn_deletar">
+			<input type="submit" value="INSERIR" name="btn" class="btn_enviar">
+			<input type="submit" value="ATUALIZAR" name="btn" class="btn_atualizar">
+			<input type="submit" value="DELETAR" name="btn" class="btn_deletar">
 		</form>
 	</div>
 
