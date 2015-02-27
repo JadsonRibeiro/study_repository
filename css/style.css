@@ -11,6 +11,12 @@
 	width: 365px;
 }
 
+#block_form {
+	width: 425px;
+	border: 1px solid black;
+	margin: 10px;
+}
+
 #slider { 
 	width: 300px; 
 	margin: 5px;

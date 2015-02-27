@@ -3,22 +3,20 @@
 include_once('class.ConectaBanco.php');
 include_once('class.Dados_banco.php');
 	
-$dados = new Dados_banco($_POST['nome'], $_POST['end_rua'], $_POST['end_bairro'], $_POST['end_numero'], $_POST['conta_agencia'], $_POST['conta_tipo'], $_POST['conta_numero'], $_POST['conta_saldo_inicial']);
-
 $conecta_banco = new ConectaBanco("localhost", "estudos_php", "root", "");
 
-if($_POST['btn'] == 'INSERIR') {
+if(isset($_POST['btn_inserir'])) {
 	
-	$conecta_banco->inserir($dados);
+	$dados_inserir = new Dados_banco($_POST['nome'], $_POST['end_rua'], $_POST['end_bairro'], $_POST['end_numero'], $_POST['conta_agencia'], $_POST['conta_tipo'], $_POST['conta_numero'], $_POST['conta_saldo_inicial']);
+	$conecta_banco->inserir($dados_inserir);
 
-} elseif ($_POST['btn'] = 'ATUALIZAR') {
+} elseif(isset($_POST['btn_deletar'])) {
+	//ESTA ENTRANDO NESSA VERIFICACAO
+	$conecta_banco->deletar($_POST['del_name']);
 	
-	$conecta_banco->atualizar($dados);
+} elseif (isset($_POST['btn_atualizar'])) {
 
-} elseif($_POST['btn'] == 'DELETAR') {
-	
-	$conecta_banco->deletar($_POST['nome']);
-	
+	$conecta_banco->atualizar($_POST['atualiza_nome'], $_POST['atualiza_rua'], $_POST['atualiza_bairro'], $_POST['atualiza_numero']);
 }
 	
 header("location:formulario.php");

@@ -7,10 +7,22 @@
 	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript">
 		function teste() {
-			alert(jQuery('.btn_atualizar').val());
+			var text = jQuery('.btn_inserir').val()+' - '+jQuery('.btn_deletar').val();
+			alert(text);
 		}
 	</script>
+	<?php
 
+		// teste ok
+		$text1 = '';
+		$text2 = '';
+		if(isset($_POST['btn_inserir'])) {
+			$text1 = "btn_inserir - setado";		
+		} 
+		if(isset($_POST['btn_deletar'])) {
+			$text2 = "btn_deletar - setado";
+		}
+	?>
 </head>
 
 <body>
@@ -35,10 +47,23 @@
 				<br/>
 				Saldo Inicial: <div id="slider"> </div> R$ <input type="text" class="conta_saldo_inicial" name="conta_saldo_inicial" size="1px" value="20">
 			</div>
-			<input type="submit" value="INSERIR" name="btn" class="btn_enviar">
-			<input type="submit" value="ATUALIZAR" name="btn" class="btn_atualizar">
-			<input type="submit" value="DELETAR" name="btn" class="btn_deletar">
+			<input type="submit" value="INSERIR" name="btn_inserir" class="btn_inserir">
 		</form>
+		<div id="block">
+			<form method="POST" action="manipula_banco.php">
+				Nome: <input type="text" name="del_name"> <br/>
+				<input type="submit" value="DELETAR" name="btn_deletar" class="btn_deletar"> 
+			</form>
+		</div>
+		<div id="block">
+			<form method="POST" action="manipula_banco.php">
+				Nome: <input type="text" name="atualiza_nome"> <br/>
+				Rua: <input type="text" name="atualiza_rua"> <br/>
+				Bairro: <input type="text" name="atualiza_bairro"> <br/>
+				Numero: <input type="text" name="atualiza_rua"> <br/>
+				<input type="submit" value="ATUALIZAR" name="btn_atualizar">
+			</form>
+		</div>
 	</div>
 
 	<script>
