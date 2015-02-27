@@ -7,22 +7,10 @@
 	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript">
 		function teste() {
-			var text = jQuery('.btn_inserir').val()+' - '+jQuery('.btn_deletar').val();
-			alert(text);
+			var botoes = jQuery('.btn_enviar').val()+' - '+jQuery('.btn_atualizar').val()+' - '+jQuery('.btn_deletar').val();
+			alert(botoes);
 		}
 	</script>
-	<?php
-
-		// teste ok
-		$text1 = '';
-		$text2 = '';
-		if(isset($_POST['btn_inserir'])) {
-			$text1 = "btn_inserir - setado";		
-		} 
-		if(isset($_POST['btn_deletar'])) {
-			$text2 = "btn_deletar - setado";
-		}
-	?>
 </head>
 
 <body>
@@ -48,6 +36,7 @@
 				Saldo Inicial: <div id="slider"> </div> R$ <input type="text" class="conta_saldo_inicial" name="conta_saldo_inicial" size="1px" value="20">
 			</div>
 			<input type="submit" value="INSERIR" name="btn_inserir" class="btn_inserir">
+
 		</form>
 		<div id="block">
 			<form method="POST" action="manipula_banco.php">
@@ -66,18 +55,8 @@
 		</div>
 	</div>
 
-	<script>
-		jQuery('#slider').slider({
-			max: 1000,
-			orientation: "horizontal",
-			animate: "fast",
-			value: 20
-		});
+	<script type="text/javascript" src="js/javascript.js"></script>
 
-		jQuery('#slider').on('slidechange', function(event, ui) {
-			jQuery('.conta_saldo_inicial').val(ui.value);
-		});
-	</script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-include_once('class.ConectaBanco.php');
+include_once('class.ConectaBanco.php');																									
 include_once('class.Dados_banco.php');
 
 $conecta_banco = new ConectaBanco("localhost", "estudos_php", "root", "ab1936");	
