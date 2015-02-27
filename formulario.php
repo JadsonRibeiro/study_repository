@@ -15,37 +15,41 @@
 
 <body>
 	<div id="container_inserir">
-		<form method="POST" action="manipula_banco.php" enctype="multipart/form-data">
-			<div id="block">
-				Nome: <input type="text" name="nome"> <br/>
-				Foto: <input type="file" name="foto"> <br/>
-			</div>
-			<div id="block">
-				Rua: <input type="text" name="end_rua"> <br/>
-				Bairro: <input type="text" name="end_bairro"> <br/>
-				Número: <input type="text" name="end_numero"> <br/>
-			</div>
-			<div id="block">
-				Agencia: <input type="text" name="conta_agencia"> <br/>
-				Conta: <input type="text" name="conta_numero"> <br/>
-				Tipo da Conta: 
-				<select name="conta_tipo">
-					<option value="corrente"> Conta Corrente </option>
-					<option value="poupanca"> Conta Poupanca </option>
-				</select>
-				<br/>
-				Saldo Inicial: <div id="slider"> </div> R$ <input type="text" class="conta_saldo_inicial" name="conta_saldo_inicial" size="1px" value="20">
-			</div>
-			<input type="submit" value="INSERIR" name="btn_inserir" class="btn_inserir">
+		<div id="block_form">
+			<form method="POST" action="manipula_banco.php" enctype="multipart/form-data">
+				<div id="block">
+					Nome: <input type="text" name="nome"> <br/>
+					Foto: <input type="file" name="foto"> <br/>
+				</div>
+				<div id="block">
+					Rua: <input type="text" name="end_rua"> <br/>
+					Bairro: <input type="text" name="end_bairro"> <br/>
+					Número: <input type="text" name="end_numero"> <br/>
+				</div>
+				<div id="block">
+					Agencia: <input type="text" name="conta_agencia"> <br/>
+					Conta: <input type="text" name="conta_numero"> <br/>
+					Tipo da Conta: 
+					<select name="conta_tipo">
+						<option value="corrente"> Conta Corrente </option>
+						<option value="poupanca"> Conta Poupanca </option>
+					</select>
+					<br/>
+					Saldo Inicial: <div id="slider"> </div> R$ <input type="text" class="conta_saldo_inicial" name="conta_saldo_inicial" size="1px" value="20">
+				</div>
+				<input type="submit" value="INSERIR" name="btn_inserir" class="btn_inserir">
 
-		</form>
-		<div id="block">
+			</form>
+		</div>
+	</div>
+	<div id="container_deletar_atualizar">
+		<div id="block_form">
 			<form method="POST" action="manipula_banco.php">
 				Nome: <input type="text" name="del_name"> <br/>
 				<input type="submit" value="DELETAR" name="btn_deletar" class="btn_deletar"> 
 			</form>
 		</div>
-		<div id="block">
+		<div id="block_form">
 			<form method="POST" action="manipula_banco.php">
 				Nome: <input type="text" name="atualiza_nome"> <br/>
 				Rua: <input type="text" name="atualiza_rua"> <br/>
@@ -53,6 +57,10 @@
 				Numero: <input type="text" name="atualiza_numero"> <br/>
 				<input type="submit" value="ATUALIZAR" name="btn_atualizar">
 			</form>
+		</div>
+		<div id="block_form">
+			Nome: <input type="text" name="pesquisa_nome">
+			<input type="submit" value="PESQUISAR" name="btn_pesquisar">
 		</div>
 	</div>
 
