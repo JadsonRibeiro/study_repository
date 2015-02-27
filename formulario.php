@@ -15,9 +15,10 @@
 
 <body>
 	<div id="container_inserir">
-		<form method="POST" action="manipula_banco.php">
+		<form method="POST" action="manipula_banco.php" enctype="multipart/form-data">
 			<div id="block">
 				Nome: <input type="text" name="nome"> <br/>
+				Foto: <input type="file" name="foto"> <br/>
 			</div>
 			<div id="block">
 				Rua: <input type="text" name="end_rua"> <br/>
