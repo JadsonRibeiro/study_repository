@@ -28,14 +28,9 @@ class ConectaBanco
 
 	public function atualizar($nome, $rua, $bairro, $numero)
 	{
-		$action = $this->con->prepare("UPDATE teste_pdo SET end_rua=?, end_bairro=?, end_numero=? WHERE nome='?'");
+		$sql = "UPDATE teste_pdo SET end_rua='{$rua}', end_bairro='{$bairro}', end_numero={$numero} WHERE nome='{$nome}'";
 		
-		$action->bindParam(1, $rua);
-		$action->bindParam(2, $bairro);
-		$action->bindParam(3, $numero);
-		$action->bindParam(4, $nome);
-
-		$action->execute();	
+		$action = $this->con->exec($sql);
 	}
 
 	public function deletar($nome) 

@@ -60,7 +60,7 @@
 				Nome: <input type="text" name="atualiza_nome"> <br/>
 				Rua: <input type="text" name="atualiza_rua"> <br/>
 				Bairro: <input type="text" name="atualiza_bairro"> <br/>
-				Numero: <input type="text" name="atualiza_rua"> <br/>
+				Numero: <input type="text" name="atualiza_numero"> <br/>
 				<input type="submit" value="ATUALIZAR" name="btn_atualizar">
 			</form>
 		</div>
