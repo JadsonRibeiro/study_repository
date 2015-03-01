@@ -21,7 +21,6 @@
 			$resp_end_rua = $_GET['resp_end_rua'];
 			$resp_end_bairro = $_GET['resp_end_bairro'];
 			$resp_end_numero = $_GET['resp_end_numero'];
-			
 		}
 	?>
 </head>

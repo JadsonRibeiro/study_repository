@@ -25,15 +25,15 @@ class ConectaBanco
 			$action = $this->con->prepare("INSERT INTO teste_pdo(nome, foto, end_rua, end_bairro, end_numero, conta_agencia, 
 				conta_tipo, conta_saldo_inicial, conta_numero) values(?, ?, ?, ?, ?, ?, ?, ?, ?) ");
 			
-			$action->bindParam(1, $dados->nome);
-			$action->bindParam(2, $dados->foto, PDO::PARAM_LOB);
-			$action->bindParam(3, $dados->end_rua);
-			$action->bindParam(4, $dados->end_bairro);
-			$action->bindParam(5, $dados->end_numero);
-			$action->bindParam(6, $dados->conta_agencia);
-			$action->bindParam(7, $dados->conta_tipo);
-			$action->bindParam(8, $dados->conta_saldo_inicial);
-			$action->bindParam(9, $dados->conta_numero);
+			$action->bindValue(1, $dados->getNome());
+			$action->bindValue(2, $dados->getFoto(), PDO::PARAM_LOB);
+			$action->bindValue(3, $dados->getEnd_Rua());
+			$action->bindValue(4, $dados->getEnd_Bairro());
+			$action->bindValue(5, $dados->getEnd_Numero());
+			$action->bindValue(6, $dados->getConta_Agencia());
+			$action->bindValue(7, $dados->getConta_Tipo());
+			$action->bindValue(8, $dados->getConta_Saldo_Inicial());
+			$action->bindValue(9, $dados->getConta_Numero());
 
 			$this->con->beginTransaction();
 			$action->execute();
@@ -53,18 +53,7 @@ class ConectaBanco
 	{
 		try {
 			$sql = "UPDATE teste_pdo SET end_rua='{$rua}', end_bairro='{$bairro}', end_numero={$numero} WHERE nome='{$nome}'";
-			$action = $this->con->exec($sql);
-
-			// $action = $this->con->prepare("UPDATE teste_pdo SET end_rua='?', end_bairro='?', end_numero=? WHERE nome='?'");
-
-			// $action->bindValue(1, $rua);
-			// $action->bindValue(2, $bairro);
-			// $action->bindValue(3, $numero);
-			// $action->bindValue(4, $nome);
-
-			// $this->con->beginTransaction();
-			// $action->execute();
-			// $this->con->commit();
+			$action = $this->con->exec($sql);		
 
 		} catch (Exception $e) {
 			$this->con->rollBack();
