@@ -17,7 +17,7 @@ final class ContaPoupanca extends Conta
 			echo "Seu saldo é insuficiente <br/>";
 		} else {
 			parent::setSaldo(parent::getSaldo() - $qnt);
-			echo "Saldo atual: ".parent::getSaldo()." <br/>";
+			//echo "Saldo atual: ".parent::getSaldo()." <br/>";
 		}
 		parent::incrementaAcessos();
 	}

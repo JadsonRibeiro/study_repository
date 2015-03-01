@@ -82,12 +82,12 @@ class ConectaBanco
 	/*
 	* Seaching data with the below name
 	*/
-	public function pesquisar($nome)
+	public function pesquisar($numero_conta)
 	{
-		$action = $this->con->query("SELECT * FROM teste_pdo WHERE nome='$nome' ");
-		$action->bindValue(1, $nome);
+		$action = $this->con->query("SELECT * FROM teste_pdo WHERE conta_numero='$numero_conta' ");
 
 		while ($result = $action->fetchObject()) {
+			//DEBBUG aqui nao eh o erro
 			$dados = new Dados_banco($result->nome, $result->foto, $result->end_rua, $result->end_bairro, $result->end_numero, 
 				$result->conta_agencia, $result->conta_tipo, $result->conta_numero, $result->conta_saldo_inicial );
 			
@@ -95,6 +95,15 @@ class ConectaBanco
 
 		return $dados;
 	}
+	
+	public function manage_conta_atualizar_saldo($numero_conta, $value) 
+	{
+		try {
+			$action = $this->con->exec("UPDATE test_pdo SET conta_saldo_inicial=$value WHERE conta_numero='$numero_conta'");
+		} catch (Exception $e){
+			throw new Exception("ERRO AO ATUALIZAR SALDO".$e->getMessage(), 1);
+		}
+	} 
 	
 }
 ?>

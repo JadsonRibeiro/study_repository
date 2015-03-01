@@ -1,20 +1,25 @@
 <?php
 
+include_once('class.ConectaBanco.php');
+
 abstract class Conta
 {
 	public $agencia;
 	public $cliente;
 	public $conta;
 	public $status = false;
+	//$saldo encapsulada
 	private $saldo = 0;
 	static $acessos = 0;
 	public $Endereco;
+	public $con = null;
 
 	/*Metodo __construct()
 	*Inicializa os atributos da classe
 	*/
 	public function __construct($agencia, $cliente, $conta, $Endereco, $saldo)
 	{
+		$this->con = new ConectaBanco("localhost", "estudos_php", "root", "");
 		$this->agencia = $agencia;
 		$this->cliente = $cliente;
 		$this->conta = $conta;
@@ -62,6 +67,7 @@ abstract class Conta
 	final public function setSaldo($valor)
 	{
 		$this->saldo = $valor;
+		$this->con->manage_conta_atualizar_saldo($this->conta, $valor);
 	}
 
 	/*Metodo incrementaAcessos()

@@ -72,7 +72,7 @@
 		</div>
 		<div id="block_form">
 			<form method="POST" action="manipula_banco.php">
-				Nome: <input type="text" name="pesquisa_nome">
+				Numero da Conta: <input type="text" name="pesquisa_nome">
 				<input type="submit" value="PESQUISAR" name="btn_pesquisar">
 			</form>
 		</div>
