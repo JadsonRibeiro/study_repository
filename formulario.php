@@ -11,6 +11,19 @@
 			alert(botoes);
 		}
 	</script>
+	<?php 
+		$resp_nome = "";
+		$resp_end_rua = "";
+		$resp_end_bairro = "";
+		$resp_end_numero = "";
+		if(isset($_GET['resp_nome'])) {
+			$resp_nome = $_GET['resp_nome'];
+			$resp_end_rua = $_GET['resp_end_rua'];
+			$resp_end_bairro = $_GET['resp_end_bairro'];
+			$resp_end_numero = $_GET['resp_end_numero'];
+			
+		}
+	?>
 </head>
 
 <body>
@@ -18,13 +31,13 @@
 		<div id="block_form">
 			<form method="POST" action="manipula_banco.php" enctype="multipart/form-data">
 				<div id="block">
-					Nome: <input type="text" name="nome"> <br/>
+					Nome: <input type="text" name="nome" value="<?php echo $resp_nome ?>"> <br/>
 					Foto: <input type="file" name="foto"> <br/>
 				</div>
 				<div id="block">
-					Rua: <input type="text" name="end_rua"> <br/>
-					Bairro: <input type="text" name="end_bairro"> <br/>
-					Número: <input type="text" name="end_numero"> <br/>
+					Rua: <input type="text" name="end_rua" value="<?php echo $resp_end_rua ?>"> <br/>
+					Bairro: <input type="text" name="end_bairro" value="<?php echo $resp_end_bairro ?>"> <br/>
+					Número: <input type="text" name="end_numero" value="<?php echo $resp_end_numero ?>"> <br/>
 				</div>
 				<div id="block">
 					Agencia: <input type="text" name="conta_agencia"> <br/>
@@ -59,8 +72,10 @@
 			</form>
 		</div>
 		<div id="block_form">
-			Nome: <input type="text" name="pesquisa_nome">
-			<input type="submit" value="PESQUISAR" name="btn_pesquisar">
+			<form method="POST" action="manipula_banco.php">
+				Nome: <input type="text" name="pesquisa_nome">
+				<input type="submit" value="PESQUISAR" name="btn_pesquisar">
+			</form>
 		</div>
 	</div>
 

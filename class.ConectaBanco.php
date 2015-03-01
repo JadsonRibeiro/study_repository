@@ -16,6 +16,9 @@ class ConectaBanco
 		}
 	}
 
+	/*
+	* Insert data on database
+	*/
 	public function inserir(Dados_banco $dados)
 	{
 		try {
@@ -43,17 +46,35 @@ class ConectaBanco
 		}
 	}
 
+	/*
+	* Update data with the same 'name'
+	*/
 	public function atualizar($nome, $rua, $bairro, $numero)
 	{
 		try {
 			$sql = "UPDATE teste_pdo SET end_rua='{$rua}', end_bairro='{$bairro}', end_numero={$numero} WHERE nome='{$nome}'";
 			$action = $this->con->exec($sql);
+
+			// $action = $this->con->prepare("UPDATE teste_pdo SET end_rua='?', end_bairro='?', end_numero=? WHERE nome='?'");
+
+			// $action->bindValue(1, $rua);
+			// $action->bindValue(2, $bairro);
+			// $action->bindValue(3, $numero);
+			// $action->bindValue(4, $nome);
+
+			// $this->con->beginTransaction();
+			// $action->execute();
+			// $this->con->commit();
+
 		} catch (Exception $e) {
 			$this->con->rollBack();
-			throw new Exception("ERRO AO ATUALIZAR - ".$e->getMessage(), 1); //COMMITAR - IMPLEMENTED ERRO HANDLING
+			throw new Exception("ERRO AO ATUALIZAR - ".$e->getMessage(), 1); 
 		}
 	}
 
+	/*
+	* Delete data with de below name
+	*/
 	public function deletar($nome) 
 	{
 		try {
@@ -67,6 +88,23 @@ class ConectaBanco
 			$this->con->rollBack();
 			throw new Exception("ERRO AO DELETAR - ".$e->getMessage(), 1);
 		}
+	}
+
+	/*
+	* Seaching data with the below name
+	*/
+	public function pesquisar($nome)
+	{
+		$action = $this->con->query("SELECT * FROM teste_pdo WHERE nome='$nome' ");
+		$action->bindValue(1, $nome);
+
+		while ($result = $action->fetchObject()) {
+			$dados = new Dados_banco($result->nome, $result->foto, $result->end_rua, $result->end_bairro, $result->end_numero, 
+				$result->conta_agencia, $result->conta_tipo, $result->conta_numero, $result->conta_saldo_inicial );
+			
+		}
+
+		return $dados;
 	}
 	
 }
