@@ -35,11 +35,23 @@ $(document).ready(function ($) {
 
 	$('#btn_manage_contas').on('click', function () {
 		var numero_conta = prompt("Digite o nome da conta");
-		if(numero_conta != null){
-			location.href = "formulario_manage_contas.php?numero_conta="+numero_conta;
-		} else {
-			alert("Campo nao pode ficar vazio");
-		}
+		
+		$.ajax({
+				type: "POST",
+				url : "functions.php",
+				data: {
+					action : "conta_exists",
+					account_number : numero_conta 
+				},
+				dateType: "json",
+				success : function(result) {
+					if(result.error) {
+						alert(result.msg);
+					} else {
+						location.href = "formulario_manage_contas.php?numero_conta="+numero_conta;
+					}
+				}
+		});
 	});
 
 	$('#btn_manage_clients').on('click', function () {

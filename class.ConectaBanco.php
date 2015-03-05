@@ -85,6 +85,8 @@ class ConectaBanco
 	public function pesquisar($numero_conta)
 	{
 		$action = $this->con->query("SELECT * FROM teste_pdo WHERE conta_numero='$numero_conta' ");
+		
+		$dados = array();
 
 		while ($result = $action->fetchObject()) {
 			//DEBBUG aqui nao eh o erro
