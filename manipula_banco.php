@@ -38,16 +38,19 @@ if(isset($_POST['btn_inserir'])) {
 	$dados = $conecta_banco->pesquisar($numero_conta);
 	$end = new Endereco($dados->getEnd_Bairro(), $dados->getEnd_Rua(), $dados->getEnd_Numero());
 	
-	if ($dados->getConta_tipo == 'corrente') {
-
-		$contaCorrente = new ContaCorrente($dados->getConta_Agencia(), $dados->getNome(), $dados->getConta_Numero(), $end, $dados->getConta_Saldo_Inicial());
-		$contaCorrente->sacar($value);
-	
-	} else {
+	// 0 => false e 1 => true
+	if ($dados->getConta_tipo() == 1) {
 
 		$contaPoupanca = new ContaPoupanca($dados->getConta_Agencia(), $dados->getNome(), $dados->getConta_Numero(), $end, $dados->getConta_Saldo_Inicial());
 		$contaPoupanca->sacar($value);
-	
+		$data_url = "?depositado_conta={$dados->getConta_tipo()}?conta_poupanca=true";
+		
+	} else {
+
+		$contaCorrente = new ContaCorrente($dados->getConta_Agencia(), $dados->getNome(), $dados->getConta_Numero(), $end, $dados->getConta_Saldo_Inicial());
+		$contaCorrente->sacar($value);
+		$data_url = "?depositado_conta={$dados->getConta_tipo()}?conta_corrente=true";
+		
 	}
 	
 } elseif (isset($_POST['btn_depositar'])) {
@@ -57,15 +60,17 @@ if(isset($_POST['btn_inserir'])) {
 	$dados = $conecta_banco->pesquisar($numero_conta);
 	$end = new Endereco($dados->getEnd_Bairro(), $dados->getEnd_Rua(), $dados->getEnd_Numero());
 	
-	if ($dados->getConta_tipo == 'corrente') {
-		
-		$contaCorrente = new ContaCorrente($dados->getConta_Agencia(), $dados->getNome(), $dados->getConta_Numero(), $end, $dados->getConta_Saldo_Inicial());
-		$contaCorrente->depositar($value);
+	if ($dados->getConta_tipo() == 1) {
+
+		$contaPoupanca = new ContaPoupanca($dados->getConta_Agencia(), $dados->getNome(), $dados->getConta_Numero(), $end, $dados->getConta_Saldo_Inicial());
+		$contaPoupanca->depositar($value);
+		$data_url = "?depositado_conta={$dados->getConta_tipo()}?conta_poupanca=true";
 		
 	} else {
 		
-		$contaPoupanca = new ContaPoupanca($dados->getConta_Agencia(), $dados->getNome(), $dados->getConta_Numero(), $end, $dados->getConta_Saldo_Inicial());
-		$contaPoupanca->depositar($value);
+		$contaCorrente = new ContaCorrente($dados->getConta_Agencia(), $dados->getNome(), $dados->getConta_Numero(), $end, $dados->getConta_Saldo_Inicial());
+		$contaCorrente->depositar($value);
+		$data_url = "?depositado_conta={$dados->getConta_tipo()}?conta_corrente=true";
 		
 	}
 	

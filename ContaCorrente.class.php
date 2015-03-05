@@ -26,8 +26,7 @@ final class ContaCorrente extends Conta
 	*/
 	public function depositar($qnt)
 	{
-		parent::setSaldo(parent::getSaldo() + $qnt);
-		parent::setSaldo(parent::getSaldo() - self::taxa);
+		parent::setSaldo((parent::getSaldo() + $qnt) - self::taxa);
 		echo "Saldo atual: ".parent::getSaldo()." <br/>";
 		parent::incrementaAcessos();
 	}

@@ -16,7 +16,7 @@
 			<input type="hidden" name="numero_conta" value="<?php echo $numero_conta ?>">
 			<div id="slider_depositar"></div>
 			 R$ <input type="text" name="value_depositar" value="20" class="value_depositar"> <br/>
-			<input type="button" value="DEPOSITAR" name="btn_depositar" id="btn_depositar">
+			<input type="submit" value="DEPOSITAR" name="btn_depositar" id="btn_depositar">
 		</form>
 	</div>
 	<div id="form_sacar">

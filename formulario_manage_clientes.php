@@ -43,8 +43,8 @@
 					Conta: <input type="text" name="conta_numero"> <br/>
 					Tipo da Conta: 
 					<select name="conta_tipo">
-						<option value="corrente"> Conta Corrente </option>
-						<option value="poupanca"> Conta Poupanca </option>
+						<option value="0"> Conta Corrente </option>
+						<option value="1"> Conta Poupanca </option>
 					</select>
 					<br/>
 					Saldo Inicial: <div id="slider"> </div> R$ <input type="text" class="conta_saldo_inicial" name="conta_saldo_inicial" size="1px" value="20">

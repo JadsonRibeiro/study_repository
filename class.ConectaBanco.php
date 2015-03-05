@@ -99,7 +99,7 @@ class ConectaBanco
 	public function manage_conta_atualizar_saldo($numero_conta, $value) 
 	{
 		try {
-			$action = $this->con->exec("UPDATE test_pdo SET conta_saldo_inicial=$value WHERE conta_numero='$numero_conta'");
+			$action = $this->con->exec("UPDATE teste_pdo SET conta_saldo_inicial=$value WHERE conta_numero='$numero_conta'");
 		} catch (Exception $e){
 			throw new Exception("ERRO AO ATUALIZAR SALDO".$e->getMessage(), 1);
 		}
