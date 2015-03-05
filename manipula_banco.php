@@ -27,10 +27,9 @@ if(isset($_POST['btn_inserir'])) {
 
 } elseif (isset($_POST['btn_pesquisar'])) {
 
-	$dados = $conecta_banco->pesquisar($_POST['pesquisa_nome']);
+	$dados = $conecta_banco->pesquisar($_POST['pesquisa_conta']);
 	
-	//DEBBUG - ERRO Nos 'geters'
-	$data_url= "?resp_nome=$dados->getNome()&resp_end_rua=$dados->getEnd_Rua()&resp_end_bairro=$dados->getEnd_Bairro()&resp_end_numero=$dados->getEnd_Numero()";
+	$data_url= "?resp_nome={$dados->getNome()}&resp_end_rua={$dados->getEnd_Rua()}&resp_end_bairro={$dados->getEnd_Bairro()}&resp_end_numero={$dados->getEnd_Numero()}";
 
 } elseif (isset($_POST['btn_sacar'])) {
 
