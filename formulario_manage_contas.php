@@ -28,8 +28,9 @@
 		</form>
 	</div>
 	<div id="form_extrato">
-		<form action="manipula_banco.php">
-			<input type="hidden" name="numero_conta" value="<?php echo $numero_conta ?>">
+		<!-- javascript: void(0) força browser nao chamar pagina alguma -->
+		<form action="javascript:void(0)">
+			<input type="hidden" class="numero_conta" name="numero_conta" value="<?php echo $numero_conta ?>">
 			<input type="submit" value="EXTRATO" name="btn_extrato" id="btn_extrato">
 		</form>
 	</div>

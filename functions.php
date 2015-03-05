@@ -24,6 +24,18 @@ if(isset($_POST['action'])) {
 				);
 			}
 			break;
+		case 'extrato':
+			$dados = $con->pesquisar($_POST['numero_conta']);
+			$response = array(
+					'nome'            => $dados->getNome(),
+					'end_rua'         => $dados->getEnd_Rua(),
+					'end_bairro'      => $dados->getEnd_Bairro(),
+					'end_numero'      => $dados->getEnd_Numero(),
+					'conta_agencia'	  => $dados->getConta_Agencia(),
+					'conta_numero'	  => $dados->getConta_Numero(),
+					'conta_saldo'     => $dados->getConta_Saldo_Inicial(),
+					'conta_tipo'      => $dados->getConta_tipo()
+			);
 	}	
 	
 	// Necessario para printar

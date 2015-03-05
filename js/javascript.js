@@ -61,5 +61,24 @@ $(document).ready(function ($) {
 	$('.btn_menu').on('click', function () {
 		location.href= "index.php";
 	});
+	
+	$('#form_extrato').on('submit', function() {
+		var numero_conta = $('#form_extrato .numero_conta').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "functions.php",
+			data : {
+				numero_conta: numero_conta,
+				action: "extrato"
+			},
+			dataType: "json",
+			success: function(res) {
+				alert(
+						"  -- EXTRATO -- \n Nome: "+res.nome +" \n Rua: "+res.end_rua +" \n Bairro: "+res.end_bairro +" \n Numero: "+res.end_numero +" \n Agencia: "+res.conta_agencia +" \n Numero: "+res.conta_numero +" \n Tipo: "+res.conta_tipo +" \n Saldo: "+res.conta_saldo 
+						);
+			}
+		});
+	});
 });
 	
