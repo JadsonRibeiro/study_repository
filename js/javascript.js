@@ -45,5 +45,9 @@ $(document).ready(function ($) {
 	$('#btn_manage_clients').on('click', function () {
 		location.href = "formulario_manage_clientes.php";
 	});	
+	
+	$('.btn_menu').on('click', function () {
+		location.href= "index.php";
+	});
 });
 	

@@ -33,5 +33,6 @@
 			<input type="submit" value="EXTRATO" name="btn_extrato" id="btn_extrato">
 		</form>
 	</div>
+	<button class="btn_menu"> MENU </button>
 </body>
 </html>

@@ -77,6 +77,7 @@
 			</form>
 		</div>
 	</div>
+	<button class="btn_menu"> MENU </button>
 
 	<script type="text/javascript" src="js/javascript.js"></script>
 
