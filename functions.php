@@ -1,6 +1,7 @@
 <?php
 include_once 'class.ConectaBanco.php';
 include_once 'class.Dados_banco.php';
+include_once 'fpdf/fpdf.php';
 
 $response = array();
 
@@ -40,7 +41,9 @@ if(isset($_POST['action'])) {
 		
 		case 'gera_extrato':
 			$dados = $con->pesquisar($_POST['numero_conta']);
-			$pointer = fopen("files\\extrato-conta-{$dados->getConta_Numero()}.txt", 'w+');
+			
+				//GERA ARQUIVO NORMAL
+			/* $pointer = fopen("files\\extrato-conta-{$dados->getConta_Numero()}.txt", 'w+');
 			$response = array('error' => 1, 'msg' => "sucessfully");
 			if ($pointer) {
 				$conta_tipo = "";
@@ -56,8 +59,33 @@ if(isset($_POST['action'])) {
 				!fclose($pointer);
 			} else {
 				$response = array('error' => '0', 'msg' => 'erro ao abrir no arquivo');
-			}
+			} */
 			
+				//GERA ARQUIVO PDF
+			//create a object FPDF with default values
+			$fpdf = new FPDF();
+			
+			//Add a page
+			$fpdf->AddPage();
+			
+			//set formatation: font, style and size
+			$fpdf->SetFont('Arial', 'B', 16);
+			
+			$conta_tipo = "";
+			if($dados->getConta_tipo()){
+				$conta_tipo = "Conta Poupanca";
+			} else {
+				$conta_tipo = "Conta Corrente";
+			}
+			$content = " -- EXTRATO -- ".PHP_EOL." Nome: {$dados->getNome()} ".PHP_EOL." Rua: {$dados->getEnd_Rua()} ,{$dados->getEnd_Numero()} ".PHP_EOL." Bairro: {$dados->getEnd_Bairro()} ".PHP_EOL." - DADOS CONTA - ".PHP_EOL." Agencia: {$dados->getConta_Agencia()} ".PHP_EOL." Conta: {$dados->getConta_Numero()} ".PHP_EOL." Tipo: {$conta_tipo} ".PHP_EOL." SALDO: R$ {$dados->getConta_Saldo_Inicial()}";
+			
+			//Add content in page
+			//set margin-top, margin-left and content	
+			$fpdf->Cell(40, 10, $content);
+			
+			//Close and show the file on the browser
+			//Output($name, $destino)
+			$fpdf->Output("Extrato_{$dados->getConta_Numero()}.pdf", 'F');
 	}	
 	
 	// Necessario para printar
