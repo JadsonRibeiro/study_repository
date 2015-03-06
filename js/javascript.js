@@ -80,5 +80,27 @@ $(document).ready(function ($) {
 			}
 		});
 	});
+	
+	$('#form_gera_extrato').on('submit', function() {
+		var numero_conta = $('#form_gera_extrato .numero_conta').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "functions.php",
+			data: {
+				numero_conta: numero_conta,
+				action: "gera_extrato"
+			},
+			dataType: "json",
+			success: function(res) {
+				if(res.error) {
+					alert("Extrato gerado com sucesso!");
+					$("#field_download_extrato").html("<a href='/EstudosPHP/files/extrato-conta-"+numero_conta+".txt' download> <button class='btn_download_extrato'> BAIXAR EXTRATO </button> </a>");
+				} else {
+					alert("Erro ao gerar extrato");
+				}
+			}
+		});
+	});
 });
 	

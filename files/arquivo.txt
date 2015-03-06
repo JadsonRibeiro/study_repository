@@ -1,0 +1,7 @@
+	Arquivo teste
+Testando manipulacao de arquivos com php
+
+Linha depois de uma linha vazia
+
+linha com barra n - \n
+linha com barra invertida b barra invertida n \b\n

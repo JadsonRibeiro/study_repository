@@ -36,6 +36,28 @@ if(isset($_POST['action'])) {
 					'conta_saldo'     => $dados->getConta_Saldo_Inicial(),
 					'conta_tipo'      => $dados->getConta_tipo()
 			);
+			break;
+		
+		case 'gera_extrato':
+			$dados = $con->pesquisar($_POST['numero_conta']);
+			$pointer = fopen("files\\extrato-conta-{$dados->getConta_Numero()}.txt", 'w+');
+			$response = array('error' => 1, 'msg' => "sucessfully");
+			if ($pointer) {
+				$conta_tipo = "";
+				if($dados->getConta_tipo()){
+					$conta_tipo = "Conta Poupanca";
+				} else {
+					$conta_tipo = "Conta Corrente";
+				}
+				$content = " -- EXTRATO -- ".PHP_EOL." Nome: {$dados->getNome()} ".PHP_EOL." Rua: {$dados->getEnd_Rua()} ,{$dados->getEnd_Numero()} ".PHP_EOL." Bairro: {$dados->getEnd_Bairro()} ".PHP_EOL." - DADOS CONTA - ".PHP_EOL." Agencia: {$dados->getConta_Agencia()} ".PHP_EOL." Conta: {$dados->getConta_Numero()} ".PHP_EOL." Tipo: {$conta_tipo} ".PHP_EOL." SALDO: R$ {$dados->getConta_Saldo_Inicial()}";     
+				if(!fwrite($pointer, $content)) {
+					$response = array('error' => '0', 'msg' => 'erro ao escrever no arquivo');
+				}
+				!fclose($pointer);
+			} else {
+				$response = array('error' => '0', 'msg' => 'erro ao abrir no arquivo');
+			}
+			
 	}	
 	
 	// Necessario para printar
