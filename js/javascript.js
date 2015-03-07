@@ -94,10 +94,10 @@ $(document).ready(function ($) {
 			dataType: "json",
 			success: function(res) {
 				if(res.error) {
-					alert("Extrato gerado com sucesso!");
+					alert(res.msg);
 					$("#field_download_extrato").html("<a href='/EstudosPHP/files/extrato-conta-"+numero_conta+".txt' download> <button class='btn_download_extrato'> BAIXAR EXTRATO </button> </a>");
 				} else {
-					alert("Erro ao gerar extrato");
+					alert(res.msg);
 				}
 			}
 		});

@@ -275,8 +275,12 @@ function AliasNbPages($alias='{nb}')
 
 function Error($msg)
 {
+	//Lancando um erro para ser capturado com Try/Catch
+	throw new Exception($msg);
+	
 	// Fatal error
 	die('<b>FPDF error:</b> '.$msg);
+	
 }
 
 function Open()

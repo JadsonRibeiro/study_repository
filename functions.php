@@ -41,10 +41,11 @@ if(isset($_POST['action'])) {
 		
 		case 'gera_extrato':
 			$dados = $con->pesquisar($_POST['numero_conta']);
+			$response = array('error' => 0, 'msg' => "");
 			
 				//GERA ARQUIVO NORMAL
 			/* $pointer = fopen("files\\extrato-conta-{$dados->getConta_Numero()}.txt", 'w+');
-			$response = array('error' => 1, 'msg' => "sucessfully");
+			
 			if ($pointer) {
 				$conta_tipo = "";
 				if($dados->getConta_tipo()){
@@ -90,9 +91,16 @@ if(isset($_POST['action'])) {
 			//set margin-top, margin-left and content	
 			$fpdf->MultiCell(0, 10, utf8_decode($content));
 			
-			//Close and show the file on the browser
-			//Output($name, $destino)
-			$fpdf->Output("Extrato_{$dados->getConta_Numero()}.pdf");
+			try {
+				//Close and show the file on the browser
+				//Output($name, $destino)
+				$fpdf->Output("Extrato_{$dados->getConta_Numero()}.pdf");
+				$response = array('Error' => 1, 'msg' => "Arquivo gerado com sucesso");
+			} catch (Exception $e) {
+				$response = array('Error' => 1, 'msg' => "Erro ao gerar arquivo -> ".$e->getMessage());
+			}
+			
+			
 	}	
 	
 	// Necessario para printar
