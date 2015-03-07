@@ -77,15 +77,22 @@ if(isset($_POST['action'])) {
 			} else {
 				$conta_tipo = "Conta Corrente";
 			}
-			$content = " -- EXTRATO -- ".PHP_EOL." Nome: {$dados->getNome()} ".PHP_EOL." Rua: {$dados->getEnd_Rua()} ,{$dados->getEnd_Numero()} ".PHP_EOL." Bairro: {$dados->getEnd_Bairro()} ".PHP_EOL." - DADOS CONTA - ".PHP_EOL." Agencia: {$dados->getConta_Agencia()} ".PHP_EOL." Conta: {$dados->getConta_Numero()} ".PHP_EOL." Tipo: {$conta_tipo} ".PHP_EOL." SALDO: R$ {$dados->getConta_Saldo_Inicial()}";
+			
+			$content = " -- EXTRATO -- \r\n Nome: {$dados->getNome()} ".PHP_EOL." Rua: {$dados->getEnd_Rua()} ,{$dados->getEnd_Numero()} ".PHP_EOL." Bairro: {$dados->getEnd_Bairro()} ".PHP_EOL." - DADOS CONTA - ".PHP_EOL." Agencia: {$dados->getConta_Agencia()} ".PHP_EOL." Conta: {$dados->getConta_Numero()} ".PHP_EOL." Tipo: {$conta_tipo} ".PHP_EOL." SALDO: R$ {$dados->getConta_Saldo_Inicial()}";
+			
+			//set break line
+			$fpdf->Ln(1);
+
+			//Insert <br/> before all newlines
+// 			$content = nl2br($content);
 			
 			//Add content in page
 			//set margin-top, margin-left and content	
-			$fpdf->Cell(40, 10, $content);
+			$fpdf->MultiCell(0, 10, utf8_decode($content));
 			
 			//Close and show the file on the browser
 			//Output($name, $destino)
-			$fpdf->Output("Extrato_{$dados->getConta_Numero()}.pdf", 'F');
+			$fpdf->Output("Extrato_{$dados->getConta_Numero()}.pdf");
 	}	
 	
 	// Necessario para printar
