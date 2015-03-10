@@ -1,9 +1,0 @@
- -- EXTRATO -- 
- Nome: Gustavo Ribeiro 
- Rua: Rua do Jose Gustavo ,4 
- Bairro: Bairro do Ze 
- - DADOS CONTA - 
- Agencia: 777-8 
- Conta: 785-3 
- Tipo: Conta Poupanca 
- SALDO: R$ 6237

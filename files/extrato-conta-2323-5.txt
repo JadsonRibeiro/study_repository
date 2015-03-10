@@ -1,9 +1,0 @@
- -- EXTRATO -- 
- Nome: Jorge 
- Rua: Rua do Jorge ,3232 
- Bairro: Bairro do Jorge 
- - DADOS CONTA - 
- Agencia: 3232-3 
- Conta: 2323-5 
- Tipo: Conta Corrente 
- SALDO: R$ 6325.5

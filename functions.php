@@ -84,22 +84,27 @@ if(isset($_POST['action'])) {
 			//set break line
 			$fpdf->Ln(1);
 
-			//Insert <br/> before all newlines
-// 			$content = nl2br($content);
+			
+			$p = fopen("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", "w+");
+			fwrite($p, $dados->getFoto());	
+			
+			//Add image
+			$fpdf->Image("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 100, 10, 30);
 			
 			//Add content in page
-			//set margin-top, margin-left and content	
 			$fpdf->MultiCell(0, 10, utf8_decode($content));
 			
-			try {
+			try {	
 				//Close and show the file on the browser
 				//Output($name, $destino)
-				$fpdf->Output("Extrato_{$dados->getConta_Numero()}.pdf");
+				$fpdf->Output("files\\Extratos - PDF\\Extrato_{$dados->getConta_Numero()}.pdf");
 				$response = array('Error' => 1, 'msg' => "Arquivo gerado com sucesso");
 			} catch (Exception $e) {
 				$response = array('Error' => 1, 'msg' => "Erro ao gerar arquivo -> ".$e->getMessage());
 			}
 			
+// 			if(chmod("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 0777))
+// 				unlink("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg");
 			
 	}	
 	
