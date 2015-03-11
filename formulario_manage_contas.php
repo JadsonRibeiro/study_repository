@@ -39,7 +39,11 @@
 			<input type="hidden" class="numero_conta" name="numero_conta" value="<?php echo $numero_conta ?>">
 			<input type="submit" value="GERAR EXTRATO" name="btn_gera_extrato" id="btn_gera_extrato">
 		</form>
-	</div> <div id="field_download_extrato"></div>
+	</div> 
+	<div id="field_download_extrato"></div> 
+	<div id="field_ler_extrato">
+		<button class="btn_ler_extrato"> LER EXTRATO - TXT </button>
+	</div>
 	
 	<button class="btn_menu"> MENU </button>
 </body>
