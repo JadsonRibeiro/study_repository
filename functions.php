@@ -5,7 +5,8 @@ include_once 'fpdf/fpdf.php';
 
 $response = array();
 
-$con = new ConectaBanco("localhost", "estudos_php", "root", "");
+$con = new ConectaBanco("localhost", "estudos_php", "root", "ab1936");
+// $con = new ConectaBanco("localhost", "estudos_php", "root", "");
 
 if(isset($_POST['action'])) {
 	
