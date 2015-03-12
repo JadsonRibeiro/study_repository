@@ -81,6 +81,27 @@ $(document).ready(function ($) {
 		});
 	});
 	
+	$(".btn_ler_extrato").on('click', function() {
+		var numero_conta = $('#form_gera_extrato .numero_conta').val();
+		
+		$.ajax({
+			type: "POST",
+			url: "functions.php",
+			data: {
+				numero_conta : numero_conta,
+				action : "ler_extrato"
+			},
+			dataType: "json",
+			success: function(res) {
+				if(res.error == 0){
+					alert(res.msg);
+				} else {
+					alert(res.content);
+				}
+			}
+		});
+	});
+	
 	$('#form_gera_extrato').on('submit', function() {
 		var numero_conta = $('#form_gera_extrato .numero_conta').val();
 		
@@ -95,12 +116,14 @@ $(document).ready(function ($) {
 			success: function(res) {
 				if(res.error) {
 					alert(res.msg);
-					$("#field_download_extrato").html("<a href='/EstudosPHP/files/extrato-conta-"+numero_conta+".txt' download> <button class='btn_download_extrato'> BAIXAR EXTRATO </button> </a>");
 				} else {
 					alert(res.msg);
+					$("#field_download_extrato").html("<a href='/EstudosPHP/files/Extratos - PDF/Extrato_"+numero_conta+".pdf' download> <button class='btn_download_extrato'> BAIXAR EXTRATO - PDF </button> </a>");
 				}
 			}
 		});
 	});
+	
+	
 });
 	

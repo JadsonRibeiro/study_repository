@@ -44,7 +44,7 @@ if(isset($_POST['action'])) {
 			$response = array('error' => 0, 'msg' => "");
 			
 				//GERA ARQUIVO NORMAL
-			/* $pointer = fopen("files\\extrato-conta-{$dados->getConta_Numero()}.txt", 'w+');
+			 $pointer = fopen("files\\Extratos - TXT\\Extrato_{$dados->getConta_Numero()}.txt", 'w+');
 			
 			if ($pointer) {
 				$conta_tipo = "";
@@ -59,18 +59,10 @@ if(isset($_POST['action'])) {
 				}
 				!fclose($pointer);
 			} else {
-				$response = array('error' => '0', 'msg' => 'erro ao abrir no arquivo');
-			} */
+				$response = array('error' => '0', 'msg' => 'erro ao abrir arquivo - gera TXT');
+			} 
 			
 				//GERA ARQUIVO PDF
-			//create a object FPDF with default values
-			$fpdf = new FPDF();
-			
-			//Add a page
-			$fpdf->AddPage();
-			
-			//set formatation: font, style and size
-			$fpdf->SetFont('Arial', 'B', 16);
 			
 			$conta_tipo = "";
 			if($dados->getConta_tipo()){
@@ -78,34 +70,67 @@ if(isset($_POST['action'])) {
 			} else {
 				$conta_tipo = "Conta Corrente";
 			}
-			
+				
 			$content = " -- EXTRATO -- \r\n Nome: {$dados->getNome()} ".PHP_EOL." Rua: {$dados->getEnd_Rua()} ,{$dados->getEnd_Numero()} ".PHP_EOL." Bairro: {$dados->getEnd_Bairro()} ".PHP_EOL." - DADOS CONTA - ".PHP_EOL." Agencia: {$dados->getConta_Agencia()} ".PHP_EOL." Conta: {$dados->getConta_Numero()} ".PHP_EOL." Tipo: {$conta_tipo} ".PHP_EOL." SALDO: R$ {$dados->getConta_Saldo_Inicial()}";
+				
+			try {
+				//create a object FPDF with default values
+				$fpdf = new FPDF();
+				
+				//Add a page
+				$fpdf->AddPage();
+				
+				//set formatation: font, style and size
+				$fpdf->SetFont('Arial', 'B', 16);
+				
+				//set break line
+				$fpdf->Ln(1);
 			
-			//set break line
-			$fpdf->Ln(1);
-
-			
-			$p = fopen("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", "w+");
-			fwrite($p, $dados->getFoto());	
-			
-			//Add image
-			$fpdf->Image("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 100, 10, 30);
-			
-			//Add content in page
-			$fpdf->MultiCell(0, 10, utf8_decode($content));
-			
-			try {	
+				$picture = $dados->getFoto(); 
+				if(!empty($picture)) {
+					
+					$p = fopen("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", "w+");
+					fwrite($p, $dados->getFoto());
+					
+					//Add image
+					$fpdf->Image("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 100, 10, 30);
+					
+				}
+				
+				//Add content in page
+				$fpdf->MultiCell(0, 10, utf8_decode($content));
+				
 				//Close and show the file on the browser
 				//Output($name, $destino)
 				$fpdf->Output("files\\Extratos - PDF\\Extrato_{$dados->getConta_Numero()}.pdf");
 				$response = array('Error' => 1, 'msg' => "Arquivo gerado com sucesso");
+				
+// 				if(chmod("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 0777))
+//  					unlink("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg");
+				
 			} catch (Exception $e) {
-				$response = array('Error' => 1, 'msg' => "Erro ao gerar arquivo -> ".$e->getMessage());
+				$response = array('Error' => 0, 'msg' => "Erro ao gerar arquivo -> ".$e->getMessage());
+			}
+			break;
+			
+		case 'ler_extrato':
+			$numero_conta = $_POST['numero_conta'];
+			$file_content = "";
+			
+			if(!file_exists("files\\Extratos - TXT\\Extrato_".$numero_conta.".txt")){
+				$response = array('error' => 0, 'msg' => 'Arquivo ainda nao gerado');
+				break;
 			}
 			
-// 			if(chmod("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 0777))
-// 				unlink("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg");
-			
+			if(!$pointer = fopen("files\\Extratos - TXT\\Extrato_".$numero_conta.".txt", "r")){
+				$response = array('error' => 0, 'msg' => "Erro ao abrir arquivo files\\Extratos - TXT\\Extrato_".$numero_conta.".txt");
+			}
+				
+			while (!feof($pointer)) {
+				$file_content .= fgets($pointer);
+			}	
+				
+			$response = array('content' => $file_content);
 	}	
 	
 	// Necessario para printar
