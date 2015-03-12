@@ -5,9 +5,11 @@ include_once('class.Dados_banco.php');
 include_once('ContaCorrente.class.php');
 include_once('ContaPoupanca.class.php');
 include_once('Endereco.class.php');
+include_once('php-init.php');
 
 //$conecta_banco = new ConectaBanco("localhost", "estudos_php", "root", "ab1936");	
-$conecta_banco = new ConectaBanco("localhost", "estudos_php", "root", "");
+$conecta_banco = new ConectaBanco(DB_HOST, DB_NAME, DB_USER, DB_PSWD);
+
 $data_url = "";
 $url = "";
 $destinations = array("formulario_manage_clientes.php", "formulario_manage_contas.php");
