@@ -85,12 +85,17 @@ if(isset($_POST['action'])) {
 				
 				//set break line
 				$fpdf->Ln(1);
-				
-				$p = fopen("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", "w+");
-				fwrite($p, $dados->getFoto());	
-				
-				//Add image
-				$fpdf->Image("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 100, 10, 30);
+			
+				$picture = $dados->getFoto(); 
+				if(!empty($picture)) {
+					
+					$p = fopen("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", "w+");
+					fwrite($p, $dados->getFoto());
+					
+					//Add image
+					$fpdf->Image("files\\Extratos - PDF\\Foto_".$dados->getConta_Numero().".jpg", 100, 10, 30);
+					
+				}
 				
 				//Add content in page
 				$fpdf->MultiCell(0, 10, utf8_decode($content));
@@ -112,10 +117,15 @@ if(isset($_POST['action'])) {
 			$numero_conta = $_POST['numero_conta'];
 			$file_content = "";
 			
-			if(!$pointer = fopen("files\\Extratos - TXT\\Extrato_".$numero_conta.".txt", "r")){
+			if(!file_exists("files\\Extratos - TXT\\Extrato_".$numero_conta.".txt")){
 				$response = array('error' => 0, 'msg' => 'Arquivo ainda nao gerado');
 				break;
 			}
+			
+			if(!$pointer = fopen("files\\Extratos - TXT\\Extrato_".$numero_conta.".txt", "r")){
+				$response = array('error' => 0, 'msg' => "Erro ao abrir arquivo files\\Extratos - TXT\\Extrato_".$numero_conta.".txt");
+			}
+				
 			while (!feof($pointer)) {
 				$file_content .= fgets($pointer);
 			}	

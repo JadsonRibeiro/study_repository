@@ -93,8 +93,8 @@ $(document).ready(function ($) {
 			},
 			dataType: "json",
 			success: function(res) {
-				if(res.error){
-					alert('Erro na leitura');
+				if(res.error == 0){
+					alert(res.msg);
 				} else {
 					alert(res.content);
 				}
