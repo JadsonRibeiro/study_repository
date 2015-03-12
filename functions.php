@@ -2,10 +2,12 @@
 include_once 'class.ConectaBanco.php';
 include_once 'class.Dados_banco.php';
 include_once 'fpdf/fpdf.php';
+include_once 'php-init.php';
 
 $response = array();
 
-$con = new ConectaBanco("localhost", "estudos_php", "root", "ab1936");
+$con = new ConectaBanco(DB_HOST, DB_NAME, DB_USER, DB_PSWD);
+// $con = new ConectaBanco("localhost", "estudos_php", "root", "ab1936");
 
 if(isset($_POST['action'])) {
 	
