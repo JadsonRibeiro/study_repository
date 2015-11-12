@@ -22,16 +22,10 @@ $(document).ready(function ($) {
 		$(".value_sacar").val(ui.value);
 	});
 	
-	$("#slider_depositar").slider( {
-		max : 1000,
-		orientation: "horizontal",
-		animate: "fast",
-		value: 20
-	});
-	
-	$("#slider_depositar").on('slidechange', function (event, ui) {
-		$(".value_depositar").val(ui.value);
-	});
+	function update_value_depositar(value) {
+		var slider_depositar = document.getElementById('slider_depositar');
+		alert(slider_depositar);	
+	}
 
 	$('#btn_manage_contas').on('click', function () {
 		var numero_conta = prompt("Digite o nome da conta");
