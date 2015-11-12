@@ -10,22 +10,6 @@ $(document).ready(function ($) {
 	$('#slider').on('slidechange', function(event, ui) {
 		$('.conta_saldo_inicial').val(ui.value);
 	});
-	
-	$("#slider_sacar").slider({
-		max : 1000,
-		orientation: "horizontal",
-		animate: "fast",
-		value: 20
-	});
-	
-	$("#slider_sacar").on('slidechange', function (event, ui) {
-		$(".value_sacar").val(ui.value);
-	});
-	
-	function update_value_depositar(value) {
-		var slider_depositar = document.getElementById('slider_depositar');
-		alert(slider_depositar);	
-	}
 
 	$('#btn_manage_contas').on('click', function () {
 		var numero_conta = prompt("Digite o nome da conta");
@@ -121,3 +105,10 @@ $(document).ready(function ($) {
 	
 });
 	
+function update_value_depositar(value) {
+	jQuery('#value_depositar').val(value);
+}
+
+function update_value_sacar(value){
+	jQuery('#value_sacar').val(value);
+}
