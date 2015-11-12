@@ -1,29 +1,23 @@
-<html>
-<head>
-	<title> FORMULARIO </title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"> </script>
-	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
-	<script type="text/javascript">
-		function teste() {
-			var botoes = jQuery('.btn_enviar').val()+' - '+jQuery('.btn_atualizar').val()+' - '+jQuery('.btn_deletar').val();
-			alert(botoes);
-		}
-	</script>
-	<?php 
-		$resp_nome = "";
-		$resp_end_rua = "";
-		$resp_end_bairro = "";
-		$resp_end_numero = "";
-		if(isset($_GET['resp_nome'])) {
-			$resp_nome = $_GET['resp_nome'];
-			$resp_end_rua = $_GET['resp_end_rua'];
-			$resp_end_bairro = $_GET['resp_end_bairro'];
-			$resp_end_numero = $_GET['resp_end_numero'];
-		}
-	?>
-</head>
+<?php require('inc/header.inc') ?>
+
+<script type="text/javascript">
+	function teste() {
+		var botoes = jQuery('.btn_enviar').val()+' - '+jQuery('.btn_atualizar').val()+' - '+jQuery('.btn_deletar').val();
+		alert(botoes);
+	}
+</script>
+<?php 
+	$resp_nome = "";
+	$resp_end_rua = "";
+	$resp_end_bairro = "";
+	$resp_end_numero = "";
+	if(isset($_GET['resp_nome'])) {
+		$resp_nome = $_GET['resp_nome'];
+		$resp_end_rua = $_GET['resp_end_rua'];
+		$resp_end_bairro = $_GET['resp_end_bairro'];
+		$resp_end_numero = $_GET['resp_end_numero'];
+	}
+?>
 
 <body>
 	<div id="container_inserir">
