@@ -18,8 +18,6 @@
 		$resp_end_numero = $_GET['resp_end_numero'];
 	}
 ?>
-
-<body>
 	<div id="container_inserir">
 		<div id="block_form">
 			<form method="POST" action="manipula_banco.php" enctype="multipart/form-data">
